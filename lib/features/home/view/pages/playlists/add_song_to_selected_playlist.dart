@@ -8,7 +8,6 @@ class AddSongToSelectedPlaylist extends ConsumerWidget {
   // ignore: prefer_typing_uninitialized_variables
   final currentSong;
   const AddSongToSelectedPlaylist(this.currentSong, {super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
