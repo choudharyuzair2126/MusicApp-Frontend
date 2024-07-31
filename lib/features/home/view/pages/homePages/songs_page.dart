@@ -152,7 +152,7 @@ class _SongsPageState extends ConsumerState<SongsPage> {
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
                                         image: NetworkImage(song.thumbnail_url),
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.contain,
                                       ),
                                     ),
                                   ),

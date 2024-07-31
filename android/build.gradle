@@ -1,5 +1,5 @@
 ext {
-    kotlin_version = '1.6.0' // Replace with the latest Kotlin version
+    kotlin_version = '2.1.10' // Replace with the latest Kotlin version
 }
 
 allprojects {
