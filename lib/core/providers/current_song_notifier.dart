@@ -238,7 +238,7 @@ class CurrentSongNotifier extends _$CurrentSongNotifier {
           }
         });
         _homeLocalRepository.uploadLocalSong(playlist[i]);
-        audioPlayer!.play();
+        audioPlayer!.pause();
         isPlaying = true;
         // Update the state property with the currently playing song
         state = playlist[i];
