@@ -1,7 +1,5 @@
 # 🎵 Music Player App
 
-![Music Player Logo](https://your-logo-url.com)
-
 ## 📌 Overview
 A **Flutter-powered music player** that supports offline audio playback with a modern UI and smooth animations.
 
@@ -33,4 +31,4 @@ flutter run
 
 ## 📢 Contact
 - **GitHub:** [choudharyuzair2126](https://github.com/choudharyuzair2126)
-- **Email:** [uzair2126@proton.me]
+- **Email:** [uzair2126@proton.me](uzair2126@proton.me)
