@@ -17,40 +17,45 @@ class LibraryPage extends ConsumerWidget {
       ),
       body: ref.watch(getFavSongsProvider).when(
           data: (data) {
-            return ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  final song = data[index];
-                  return ListTile(
-                    onTap: () {
-                      ref
-                          .read(currentSongNotifierProvider.notifier)
-                          .updateSong(song);
-                    },
-                    title: Text(
-                      data[index].song_name,
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w700),
-                    ),
-                    subtitle: Text(
-                      data[index].artist,
-                      style: const TextStyle(
-                          fontSize: 13, fontWeight: FontWeight.w600),
-                    ),
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(song.thumbnail_url),
-                      radius: 35,
-                      backgroundColor: Pallete.backgroundColor,
-                    ),
-                  );
-                });
+            return data.isEmpty
+                ? const Center(
+                    child: Text("No Favorite Songs Yet"),
+                  )
+                : ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      final song = data[index];
+                      return ListTile(
+                        onTap: () {
+                          ref
+                              .read(currentSongNotifierProvider.notifier)
+                              .updateSong(song);
+                        },
+                        title: Text(
+                          data[index].song_name,
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w700),
+                        ),
+                        subtitle: Text(
+                          data[index].artist,
+                          style: const TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w600),
+                        ),
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(song.thumbnail_url),
+                          radius: 35,
+                          backgroundColor: Pallete.backgroundColor,
+                        ),
+                      );
+                    });
+            return null;
           },
           error: (error, st) {
             return Center(
               child: Text(error.toString()),
             );
           },
-          loading: () => const Loader()),
+          loading: () => const Center(child: Loader())),
     );
   }
 }
