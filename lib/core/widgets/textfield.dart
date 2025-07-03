@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hinttext;
   final bool isobsecuretext;
+  final TextInputType? keyboardType;
   final bool readOnly;
   final VoidCallback? ontap;
   final TextEditingController? controller;
@@ -14,13 +15,15 @@ class CustomTextField extends StatelessWidget {
       this.ontap,
       required this.controller,
       this.readOnly = false,
-      this.isobsecuretext = false});
+      this.isobsecuretext = false,
+      required this.keyboardType});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       readOnly: readOnly,
       onTap: ontap,
+      keyboardType: keyboardType,
       obscureText: isobsecuretext,
       validator: (value) {
         if (value!.trim().isEmpty) {

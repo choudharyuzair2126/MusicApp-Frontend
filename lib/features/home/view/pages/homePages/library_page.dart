@@ -32,12 +32,12 @@ class LibraryPage extends ConsumerWidget {
                               .updateSong(song);
                         },
                         title: Text(
-                          data[index].song_name,
+                          song.song_name,
                           style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w700),
                         ),
                         subtitle: Text(
-                          data[index].artist,
+                          song.artist,
                           style: const TextStyle(
                               fontSize: 13, fontWeight: FontWeight.w600),
                         ),
@@ -48,12 +48,19 @@ class LibraryPage extends ConsumerWidget {
                         ),
                       );
                     });
-            return null;
           },
           error: (error, st) {
-            return Center(
-              child: Text(error.toString()),
-            );
+            return error.toString().contains("Null check ")
+                ? const Center(
+                    child: Text(
+                      "No Favorite Songs Yet",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                : Center(
+                    child: Text(error.toString()),
+                  );
           },
           loading: () => const Center(child: Loader())),
     );

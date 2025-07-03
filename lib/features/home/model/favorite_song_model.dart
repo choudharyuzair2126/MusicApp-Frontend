@@ -31,18 +31,57 @@ class FavSongModel {
     };
   }
 
-  factory FavSongModel.fromMap(Map<String, dynamic> map) {
+  factory FavSongModel.fromMap(Map<String, dynamic>? map) {
+    // Handle null map directly
+    if (map == null) {
+      return FavSongModel(
+        id: '',
+        song_id: '',
+        user_id: '',
+      );
+    }
+
     return FavSongModel(
-      id: map['id'] as String,
-      song_id: map['song_id'] as String,
-      user_id: map['user_id'] as String,
+      id: map['id'] as String? ?? '', // Handle null values
+      song_id: map['song_id'] as String? ?? '',
+      user_id: map['user_id'] as String? ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory FavSongModel.fromJson(String source) =>
-      FavSongModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory FavSongModel.fromJson(String source) {
+    // Handle empty/null JSON strings
+    if (source.isEmpty || source == 'null') {
+      return FavSongModel(
+        id: '',
+        song_id: '',
+        user_id: '',
+      );
+    }
+
+    try {
+      final decoded = json.decode(source);
+
+      // Handle null decoded value
+      if (decoded == null) {
+        return FavSongModel(
+          id: '',
+          song_id: '',
+          user_id: '',
+        );
+      }
+
+      return FavSongModel.fromMap(decoded as Map<String, dynamic>?);
+    } catch (e) {
+      // Return empty model on any parsing error
+      return FavSongModel(
+        id: '',
+        song_id: '',
+        user_id: '',
+      );
+    }
+  }
 
   @override
   String toString() =>

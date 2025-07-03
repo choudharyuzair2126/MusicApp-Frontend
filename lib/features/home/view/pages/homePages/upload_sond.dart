@@ -142,6 +142,7 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
                               ontap: () {
                                 selectAudio();
                               },
+                              keyboardType: null,
                             ),
                       const SizedBox(
                         height: 20,
@@ -149,6 +150,7 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
                       CustomTextField(
                         hinttext: 'Artist',
                         controller: artistNameController,
+                        keyboardType: TextInputType.name,
                       ),
                       const SizedBox(
                         height: 20,
@@ -156,6 +158,7 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
                       CustomTextField(
                         hinttext: "Song Name",
                         controller: songNameController,
+                        keyboardType: TextInputType.name,
                       ),
                       ColorPicker(
                         pickersEnabled: const {ColorPickerType.wheel: true},

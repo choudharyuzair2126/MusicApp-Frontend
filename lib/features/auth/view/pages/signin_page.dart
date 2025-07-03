@@ -52,6 +52,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     });
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
@@ -63,66 +64,74 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               padding: const EdgeInsets.all(8.0),
               child: Form(
                 key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Sign In.',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    CustomTextField(
-                      hinttext: "Email",
-                      controller: emailController,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    CustomTextField(
-                      isobsecuretext: true,
-                      hinttext: "Password",
-                      controller: passwordController,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    CustomButtom(
-                      ontap: () async {
-                        if (formKey.currentState!.validate()) {
-                          ref.read(authViewModelProvider.notifier).loginUser(
-                              email: emailController.text,
-                              password: passwordController.text);
-                        }
-                      },
-                      text: "Sign In",
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignupPage()));
-                      },
-                      child: RichText(
-                          text: TextSpan(
-                        style: Theme.of(context).textTheme.titleMedium,
-                        text: "Don't have an account? ",
-                        children: const [
-                          TextSpan(
-                              text: 'Sign Up',
-                              style: TextStyle(
-                                  color: Pallete.gradient2,
-                                  fontWeight: FontWeight.bold))
-                        ],
-                      )),
-                    )
-                  ],
+                child: SingleChildScrollView(
+                  reverse: true,
+                  child: Column(
+                    //      mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                      ),
+                      const Text(
+                        'Sign In.',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 50),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      CustomTextField(
+                        hinttext: "Email",
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      CustomTextField(
+                        isobsecuretext: true,
+                        hinttext: "Password",
+                        controller: passwordController,
+                        keyboardType: TextInputType.visiblePassword,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      CustomButtom(
+                        ontap: () async {
+                          if (formKey.currentState!.validate()) {
+                            ref.read(authViewModelProvider.notifier).loginUser(
+                                email: emailController.text,
+                                password: passwordController.text);
+                          }
+                        },
+                        text: "Sign In",
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignupPage()));
+                        },
+                        child: RichText(
+                            text: TextSpan(
+                          style: Theme.of(context).textTheme.titleMedium,
+                          text: "Don't have an account? ",
+                          children: const [
+                            TextSpan(
+                                text: 'Sign Up',
+                                style: TextStyle(
+                                    color: Pallete.gradient2,
+                                    fontWeight: FontWeight.bold))
+                          ],
+                        )),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

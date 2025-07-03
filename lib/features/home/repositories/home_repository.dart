@@ -116,18 +116,23 @@ class HomeRepository {
           'auth-token': token,
         },
       );
-      var resBodyMap = jsonDecode(response.body);
+      final resBody = jsonDecode(response.body);
 
       if (response.statusCode != 200) {
-        resBodyMap = resBodyMap as Map<String, dynamic>;
-        return Left(AppFailure(resBodyMap['detail']));
+        return Left(AppFailure(resBody['detail'] as String));
       }
-      resBodyMap = resBodyMap as List;
 
+      final resBodyList = resBody as List;
       List<SongModel> songs = [];
-      for (final map in resBodyMap) {
-        songs.add(SongModel.fromMap(map['song']));
+
+      for (final item in resBodyList) {
+        if (item is Map<String, dynamic> && item.containsKey('song')) {
+          songs.add(SongModel.fromMap(item['song']));
+        } else if (item is Map<String, dynamic>) {
+          songs.add(SongModel.fromMap(item));
+        }
       }
+
       return Right(songs);
     } catch (e) {
       return Left(AppFailure(e.toString()));

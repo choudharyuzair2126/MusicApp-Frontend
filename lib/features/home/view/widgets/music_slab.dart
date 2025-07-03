@@ -16,7 +16,7 @@ class MusicSlab extends ConsumerWidget {
     final currentSong = ref.watch(currentSongNotifierProvider);
     final songNotifier = ref.watch(currentSongNotifierProvider.notifier);
     final userFavorites = ref
-        .watch(currentUserNotifierProvider.select((data) => data!.favorites));
+        .watch(currentUserNotifierProvider.select((data) => data?.favorites));
     if (currentSong == null) {
       return const SizedBox();
     } else {
@@ -102,7 +102,7 @@ class MusicSlab extends ConsumerWidget {
                               .read(homeViewModelProvider.notifier)
                               .favSong(songId: currentSong.id);
                         },
-                        icon: Icon(userFavorites
+                        icon: Icon(userFavorites!
                                 .where((fav) => fav.song_id == currentSong.id)
                                 .toList()
                                 .isNotEmpty

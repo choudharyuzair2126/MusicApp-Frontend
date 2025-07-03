@@ -48,12 +48,12 @@ class SongModel {
 
   factory SongModel.fromMap(Map<String, dynamic> map) {
     return SongModel(
-      id: map['id'] ?? '',
-      song_name: map['song_name'] ?? '',
-      artist: map['artist'] ?? '',
-      thumbnail_url: map['thumbnail_url'] ?? '',
-      song_url: map['song_url'] ?? '',
-      hex_code: map['hex_code'] ?? '',
+      id: map['id']?.toString() ?? '',
+      song_name: map['song_name']?.toString() ?? '',
+      artist: map['artist']?.toString() ?? '',
+      thumbnail_url: map['thumbnail_url']?.toString() ?? '',
+      song_url: map['song_url']?.toString() ?? '',
+      hex_code: map['hex_code']?.toString() ?? '',
     );
   }
 

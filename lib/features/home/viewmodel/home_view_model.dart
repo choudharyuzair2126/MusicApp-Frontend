@@ -97,26 +97,24 @@ class HomeViewModel extends _$HomeViewModel {
 
   AsyncValue _favSongSuccess(bool isFavorited, String songId) {
     final userNotifier = ref.read(currentUserNotifierProvider.notifier);
+    final currentUser = ref.read(currentUserNotifierProvider)!;
+
     if (isFavorited) {
       userNotifier.addUser(
-        ref.read(currentUserNotifierProvider)!.copyWith(
+        currentUser.copyWith(
           favorites: [
-            ...ref.read(currentUserNotifierProvider)!.favorites,
-            FavSongModel(id: '', song_id: songId, user_id: '')
+            ...currentUser.favorites,
+            FavSongModel(id: '', song_id: songId, user_id: currentUser.id)
           ],
         ),
       );
     } else {
       userNotifier.addUser(
-        ref.read(currentUserNotifierProvider)!.copyWith(
-              favorites: ref
-                  .read(currentUserNotifierProvider)!
-                  .favorites
-                  .where(
-                    (fav) => fav.song_id != songId,
-                  )
-                  .toList(),
-            ),
+        currentUser.copyWith(
+          favorites: currentUser.favorites
+              .where((fav) => fav.song_id != songId)
+              .toList(),
+        ),
       );
     }
     ref.invalidate(getFavSongsProvider);

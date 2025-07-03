@@ -1,0 +1,1 @@
+D:\Flutter\MusicApp\client\build\app\intermediates\cxx\RelWithDebInfo\82266c2p\obj\armeabi-v7a

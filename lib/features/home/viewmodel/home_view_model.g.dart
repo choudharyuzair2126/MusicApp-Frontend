@@ -19,6 +19,8 @@ final getFavSongsProvider = AutoDisposeFutureProvider<List<SongModel>>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetFavSongsRef = AutoDisposeFutureProviderRef<List<SongModel>>;
 String _$getAllSongsHash() => r'478f430419872127793694c329920f2c961c9163';
 
@@ -33,8 +35,10 @@ final getAllSongsProvider = AutoDisposeFutureProvider<List<SongModel>>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetAllSongsRef = AutoDisposeFutureProviderRef<List<SongModel>>;
-String _$homeViewModelHash() => r'4abaf573a7e4954eb70db02a9d1eef0e4bc6bdb9';
+String _$homeViewModelHash() => r'12821325f67cf519222546ce5c0a318ccf3bb40e';
 
 /// See also [HomeViewModel].
 @ProviderFor(HomeViewModel)
@@ -51,4 +55,4 @@ final homeViewModelProvider =
 
 typedef _$HomeViewModel = AutoDisposeNotifier<AsyncValue?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

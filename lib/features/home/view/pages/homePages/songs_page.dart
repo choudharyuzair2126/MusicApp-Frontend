@@ -40,7 +40,7 @@ class _SongsPageState extends ConsumerState<SongsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 30, left: 18),
+            padding: EdgeInsets.only(top: 40, left: 18),
             child: Text(
               'Recently Played Songs',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -48,7 +48,7 @@ class _SongsPageState extends ConsumerState<SongsPage> {
           ),
           recentlyPlayedSong.isEmpty
               ? const Padding(
-                  padding: EdgeInsets.all(18.0),
+                  padding: EdgeInsets.only(left: 18.0, top: 30),
                   child: Text(
                     "No recently played songs",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
@@ -152,7 +152,7 @@ class _SongsPageState extends ConsumerState<SongsPage> {
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
                                         image: NetworkImage(song.thumbnail_url),
-                                        fit: BoxFit.contain,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
