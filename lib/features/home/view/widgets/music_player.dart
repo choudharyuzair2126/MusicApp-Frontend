@@ -156,11 +156,13 @@ class MusicPlayer extends ConsumerWidget {
                                 child: Slider(
                                   min: 0,
                                   max: 1,
-                                  value: sliderValue > 1
-                                      ? 1
-                                      : sliderValue < 0
-                                          ? 0
-                                          : sliderValue,
+                                  value: sliderValue.isNaN
+                                      ? 0
+                                      : sliderValue > 1
+                                          ? 1
+                                          : sliderValue < 0
+                                              ? 0
+                                              : sliderValue,
                                   onChanged: (val) {
                                     isSliding = true;
                                     sliderValueNotifier.value = val;
