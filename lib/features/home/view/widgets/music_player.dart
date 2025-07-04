@@ -65,7 +65,7 @@ class MusicPlayer extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         image: NetworkImage(currentSong.thumbnail_url),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
@@ -81,20 +81,28 @@ class MusicPlayer extends ConsumerWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            currentSong.song_name,
-                            style: const TextStyle(
-                              color: Pallete.whiteColor,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 24,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.76,
+                            child: Text(
+                              currentSong.song_name,
+                              style: const TextStyle(
+                                color: Pallete.whiteColor,
+                                overflow: TextOverflow.ellipsis,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 23,
+                              ),
                             ),
                           ),
-                          Text(
-                            currentSong.artist,
-                            style: const TextStyle(
-                              color: Pallete.subtitleText,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.76,
+                            child: Text(
+                              currentSong.artist,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Pallete.subtitleText,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ],

@@ -17,6 +17,7 @@ class MusicSlab extends ConsumerWidget {
     final songNotifier = ref.watch(currentSongNotifierProvider.notifier);
     final userFavorites = ref
         .watch(currentUserNotifierProvider.select((data) => data?.favorites));
+
     if (currentSong == null) {
       return const SizedBox();
     } else {
@@ -67,7 +68,7 @@ class MusicSlab extends ConsumerWidget {
                                   image: NetworkImage(
                                     currentSong.thumbnail_url,
                                   ),
-                                  fit: BoxFit.cover)),
+                                  fit: BoxFit.fill)),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -75,19 +76,31 @@ class MusicSlab extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              currentSong.song_name,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: Text(
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                currentSong.song_name,
+                                style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
-                            Text(
-                              currentSong.artist,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Pallete.subtitleText,
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: Text(
+                                currentSong.artist,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Pallete.subtitleText,
+                                ),
                               ),
                             ),
                           ])

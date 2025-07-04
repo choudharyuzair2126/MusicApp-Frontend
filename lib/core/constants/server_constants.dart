@@ -1,4 +1,4 @@
 class ServerConstants {
   static const String serverUrl =
-      'Put your server URL here'; // Replace with your actual server URL
+      'Put Your Server Url or IP Address Here '; // Replace with your actual server URL
 }

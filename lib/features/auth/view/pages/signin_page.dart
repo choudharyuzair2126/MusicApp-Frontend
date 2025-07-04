@@ -100,9 +100,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       CustomButtom(
                         ontap: () async {
                           if (formKey.currentState!.validate()) {
-                            ref.read(authViewModelProvider.notifier).loginUser(
-                                email: emailController.text,
-                                password: passwordController.text);
+                            if (emailController.text.toString().contains("@")) {
+                              ref
+                                  .read(authViewModelProvider.notifier)
+                                  .loginUser(
+                                      email: emailController.text,
+                                      password: passwordController.text);
+                            } else {
+                              showSnakBar("Please enter a valid email address",
+                                  context);
+                            }
                           }
                         },
                         text: "Sign In",

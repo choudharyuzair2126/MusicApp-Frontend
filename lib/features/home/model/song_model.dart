@@ -8,6 +8,7 @@ class SongModel {
   final String thumbnail_url;
   final String song_url;
   final String hex_code;
+
   SongModel({
     required this.id,
     required this.song_name,
@@ -46,11 +47,27 @@ class SongModel {
     };
   }
 
+  /// Fix garbled encoding like "ð" by re-decoding as UTF-8
+  static String fixEncoding(String input) {
+    final bytes = latin1.encode(input); // Re-encode assuming wrong Latin-1
+    return utf8.decode(bytes); // Decode properly as UTF-8
+  }
+
+  /// Detect if a string is garbled (mojibake)
+  static bool isGarbled(String input) {
+    // Very basic check for known mojibake characters
+    return input.contains('ð') || input.contains('�');
+  }
+
   factory SongModel.fromMap(Map<String, dynamic> map) {
+    final rawSongName = map['song_name']?.toString() ?? '';
+    final rawArtist = map['artist']?.toString() ?? '';
+
     return SongModel(
       id: map['id']?.toString() ?? '',
-      song_name: map['song_name']?.toString() ?? '',
-      artist: map['artist']?.toString() ?? '',
+      song_name:
+          isGarbled(rawSongName) ? fixEncoding(rawSongName) : rawSongName,
+      artist: isGarbled(rawArtist) ? fixEncoding(rawArtist) : rawArtist,
       thumbnail_url: map['thumbnail_url']?.toString() ?? '',
       song_url: map['song_url']?.toString() ?? '',
       hex_code: map['hex_code']?.toString() ?? '',

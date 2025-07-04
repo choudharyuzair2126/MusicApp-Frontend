@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final VoidCallback? ontap;
   final TextEditingController? controller;
+  final int? maxLength;
   const CustomTextField(
       {super.key,
       required this.hinttext,
@@ -16,12 +17,14 @@ class CustomTextField extends StatelessWidget {
       required this.controller,
       this.readOnly = false,
       this.isobsecuretext = false,
-      required this.keyboardType});
+      required this.keyboardType,
+      this.maxLength});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       readOnly: readOnly,
+      maxLength: maxLength,
       onTap: ontap,
       keyboardType: keyboardType,
       obscureText: isobsecuretext,

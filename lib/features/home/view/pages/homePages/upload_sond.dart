@@ -148,14 +148,16 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
                         height: 20,
                       ),
                       CustomTextField(
+                        maxLength: 100,
                         hinttext: 'Artist',
                         controller: artistNameController,
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.text,
                       ),
                       const SizedBox(
                         height: 20,
                       ),
                       CustomTextField(
+                        maxLength: 100,
                         hinttext: "Song Name",
                         controller: songNameController,
                         keyboardType: TextInputType.name,
